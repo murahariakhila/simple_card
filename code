@@ -1,0 +1,100 @@
+package com.example.kpop
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.kpop.ui.theme.KPOPTheme
+
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            KPOPTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Greeting(
+                        name = "Android",
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Box(modifier = modifier.fillMaxSize()) {
+        // Image at the top
+        Image(
+            painter = painterResource(R.drawable.resource__),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(400.dp)
+                .padding(bottom=300.dp)
+        )
+
+        // Box for "BLACK PINK" text
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 200.dp)
+                .height(500.dp)
+                .padding(bottom=300.dp)
+        ) {
+            Text(
+                text = "BLACK PINK",
+                fontSize = 60.sp,
+                modifier = Modifier.align(Alignment.TopCenter) // Center it at the top
+            )
+        }
+
+        // Box for the rest of the text (Welcome blinks and the Blackpink description)
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 300.dp) // Adjust padding to keep text below the image
+                .padding(16.dp)
+        ) {
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "Welcome, blinks",
+                    fontSize = 35.sp,
+                    textAlign = TextAlign.Justify,
+                    modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+                )
+                Text(
+                    text = "YG Entertainment held worldwide tryouts in 2010 to form a new girl group. The group's members were chosen from international backgrounds to give them an advantage in foreign markets. Blackpink's commercial success in their first five months led to them being named New Artist of the Year at the 31st Golden Disc Awards and the 26th Seoul Music Awards. Blackpink is the highest-charting female K-pop act on Billboard Hot 100 and Billboard 200. They were also the first female K-pop group to perform at Coachella.",
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Justify,
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+        }
+    }
+}
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    KPOPTheme {
+        Greeting(name = "Android")
+    }
+}
